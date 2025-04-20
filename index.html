@@ -412,6 +412,8 @@ border-radius: 20%;
   const contact = document.getElementById("contact").value.trim();
   const address = document.getElementById("address").value.trim();
   const totalPrice = document.getElementById("totalPrice").innerText;
+  const currentDateTime = new Date().toLocaleString();
+  
 
   if (!name || !contact || !address) {
     alert("Please fill out all the details.");
@@ -425,9 +427,11 @@ border-radius: 20%;
   };
 
   let orderDetails = `*Dr.Cafe Order*\n\n`;
+  orderDetails += `*Date:* ${currentDateTime}\n`;
   orderDetails += `*Name:* ${name}\n`;
   orderDetails += `*Contact:* ${contact}\n`;
   orderDetails += `*Address:* ${address}\n\n`;
+
   orderDetails += `*Order Items:*\n`;
 
   for (const id in allItems) {
@@ -452,6 +456,7 @@ async function extractBill() {
   const contact = document.getElementById("contact").value.trim();
   const address = document.getElementById("address").value.trim();
   const totalPrice = document.getElementById("totalPrice").innerText;
+ 
 
   if (!name || !contact || !address) {
     alert("Please fill out all the details to generate a bill.");
