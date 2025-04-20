@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dr.Cafe Official</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<style>
+
+  body {
+    background: #000;
+    color: white;
+  }
+
+  .pizza-row {
+    margin-bottom: 15px;
+  }
+ 
+  #bottom{
+    backdrop-filter: blur(10px);
+    background: #00000046;
+   padding: 1%;
+   position: fixed;
+  left: 50%;
+  bottom: 0;
+min-width: 260px;
+  transform: translateX(-50%);
+   border-top-left-radius: 10px;
+   border-top-right-radius: 10px;
+   border: 1px solid rgba(255, 255, 255, 0.253);
+   display: grid;
+   place-items: center;
+  }
+  .quantity-buttons button {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+
+  .item-name {
+    color: yellow;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px #000, 2px 2px 4px #333;
+  }
+
+  input {
+  background-color: black !important;
+  color: white !important;
+  border: 1px solid white !important;
+  padding: 8px !important;
+  outline: none !important;
+}
+
+input::placeholder {
+  color: white !important; /* For placeholder text */
+}
+
+input:focus,
+input:active,
+input:hover {
+  background-color: black !important;
+  color: white !important;
+  border-color: white !important; /* optional, for consistent border */
+}
+
+input[type="text"] {
+  background-color: black !important;
+  color: white !important;
+}
+
+
+
+
+
+
+
+
+  input[type="checkbox"] {
+    transform: scale(2);
+    margin-right: 8px;
+    cursor: pointer;
+  }
+
+
+
+
+
+  .logo-img {
+max-width: 200px;
+height: auto;
+border-radius: 20%;
+}
+
+
+/* >>>>>>>>>>>>>>>>>>>>>> */
+
+.whatsapp-contact {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #25D366;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: sans-serif;
+    width: fit-content;
+  }
+
+  .whatsapp-contact:hover {
+    background-color: #1ebc59;
+  }
+
+  .whatsapp-icon {
+    font-size: 20px;
+  }
+</style>
+<body>
+<center>
+  <br>
+  <img src="images/Screenshot 2025-04-19 150926.jpg" class="logo-img">
+</center>
+<div class="container mt-5">
+  <form id="orderForm">
+    <div class="row mb-3">
+      <div class="col-12 col-md-4">
+        <label>Name</label>
+        <input type="text" id="name" class="form-control" required />
+      </div>
+      <div class="col-12 col-md-4">
+        <label>Contact No.</label>
+        <input type="text" id="contact" class="form-control" required />
+      </div>
+      <div class="col-12 col-md-4">
+        <label>Address</label>
+        <input type="text" id="address" class="form-control" required />
+      </div>
+    </div>
+
+    <!-- Menu Sections -->
+    <h4 class="mt-4 text-danger">Paratha Section</h4>
+    <div id="parathaMenu"></div>
+
+    <h4 class="mt-4 text-danger">Sandwich Section</h4>
+    <div id="sandwichMenu"></div>
+
+    <h4 class="mt-4 text-danger">Tostadas Section</h4>
+    <div id="tostadasMenu"></div>
+
+    <h4 class="mt-4 text-danger">Burgers Section</h4>
+    <div id="burgersMenu"></div>
+
+    <h4 class="mt-4 text-danger">Shawarma Section</h4>
+    <div id="shawarmaMenu"></div>
+
+    <h4 class="mt-4 text-danger">Wings and Nuggets Section</h4>
+    <div id="wingsMenu"></div>
+
+    <h4 class="mt-4 text-danger">Paratha Rolls Section</h4>
+    <div id="parathaRollsMenu"></div>
+
+    <h4 class="mt-4 text-danger">Platters Section</h4>
+    <div id="plattersMenu"></div>
+
+    <h4 class="mt-4 text-danger">Tea and Coffee Section</h4>
+    <div id="teaAndCoffeeMenu"></div>
+
+    <h4 class="mt-4 text-danger">Fries Section</h4>
+    <div id="friesMenu"></div>
+
+    <h4 class="mt-4 text-danger">Extras Section</h4>
+    <div id="extrasMenu"></div>
+
+    <h4 class="mt-4 text-danger">Free Delivery Deals Section</h4>
+    <div id="freeDeliveryDealsMenu"></div>
+
+    <h4 class="mt-4 text-danger">Deals Section</h4>
+    <div id="dealsMenu"></div>
+
+    
+    <BR><BR><BR><BR><BR></BR></BR></BR></BR></BR>
+
+    <section id="bottom">
+      <h5 class="mt-3">Total Price: Rs <span id="totalPrice">0.00</span></h5>
+    <button type="button" onclick="submitOrder()" class="btn btn-success mt-3 w-100">Submit Order</button>
+    <button type="button" onclick="extractBill()" class="btn btn-warning mt-2 w-100">Extract Bill</button>
+    <button type="button" onclick="clearOrder()" class="btn btn-danger mt-2 w-100">Clear Order</button>
+
+    <br>
+    <a href="https://wa.me/923167063519" target="_blank" style="text-decoration: none;transform: translateY(-10px);">
+      <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp Icon" style="vertical-align: middle;"/>
+      <span style="font-size: 16px; color: #25D366; font-weight: bold; vertical-align: middle;">Chat on WhatsApp</span>
+    </a>
+  </section>
+   
+  </form>
+</div>
+
+
+
+<script>
+  const prices = {};
+
+  const parathaItems = {
+    plain_paratha: ["Plain Paratha", 60],
+    aloo_paratha: ["Aloo Paratha", 140],
+    cheese_paratha: ["Cheese Paratha", 250],
+    chicken_paratha: ["Chicken Paratha", 250],
+    chicken_cheese_paratha: ["Chicken Cheese Paratha", 300],
+    aloo_cheese_paratha: ["Aloo Cheese Paratha", 200],
+    aloo_chicken_paratha: ["Aloo Chicken Paratha", 199],
+    paratha_with_omelette: ["Paratha with Omelette", 180],
+    paratha_with_fried_egg: ["Paratha with Fried Egg", 140],
+    nutella_paratha: ["Nutella Paratha", 180],
+    meetha_paratha: ["Meetha Paratha", 80],
+    zingeratha: ["Zingeratha", 499],
+  };
+
+  const sandwichItems = {
+    cheesy_chicken_sandwich: ["Cheesy Chicken Sandwich", 350],
+    pizza_sandwich: ["Pizza Sandwich", 400],
+    special_cold_sandwich: ["Special Cold Sandwich", 140],
+    zinger_sandwich: ["Zinger Sandwich", 350],
+    salsiccia_sandwich: ["Salsiccia Sandwich", 350],
+    french_toast: ["French Toast", 300],
+  };
+
+  const tostadasItems = {
+    chicken_tostada: ["Chicken Tostada", 350],
+    salsiccia_tostada: ["Salsiccia Tostada", 380],
+    chicken_salsiccia_tostada: ["Chicken Salsiccia Tostada", 450],
+    zinger_tostada: ["Zinger Tostada", 399],
+  };
+
+  const burgerItems = {
+    chicken_burger: ["Chicken Burger", 200],
+    chapli_kabab_burger: ["Chapli Kabab Burger", 200],
+    patty_burger: ["Patty Burger", 180],
+    zinger_burger: ["Zinger Burger", 260],
+    double_zinger_burger: ["Double Zinger Burger", 450],
+    pizza_burger: ["Pizza Burger", 350],
+    big_arch: ["Big Arch", 450],
+  };
+
+  const shawarmaItems = {
+    chicken_shawarma: ["Chicken Shawarma", 180],
+    zinger_shawarma: ["Zinger Shawarma", 230],
+    special_shawarma: ["Special Shawarma", 200],
+    salsiccia_shawarma: ["Salsiccia Shawarma", 190],
+    pizza_shawarma: ["Pizza Shawarma", 270],
+  };
+
+  const wingsItems = {
+    hot_wings_10pc: ["Hot Wings 10 pc", 560],
+  };
+
+  const parathaRollsItems = {
+    chicken_paratha_roll: ["Chicken Paratha Roll", 250],
+    chicken_cheese_paratha_roll: ["Chicken Cheese Paratha Roll", 300],
+    zinger_paratha_roll: ["Zinger Paratha Roll", 270],
+    zinger_cheese_paratha_roll: ["Zinger Cheese Paratha Roll", 320],
+    pizza_paratha_roll: ["Pizza Paratha Roll", 320],
+    salsiccia_paratha_roll: ["Salsiccia Paratha Roll", 270],
+  };
+
+  const plattersItems = {
+    chicken_shawarma_platter: ["Chicken Shawarma Platter", 380],
+    zinger_shawarma_platter: ["Zinger Shawarma Platter", 490],
+    chicken_paratha_platter: ["Chicken Paratha Platter", 530],
+    zinger_paratha_platter: ["Zinger Paratha Platter", 570],
+  };
+
+  const teaAndCoffeeItems = {
+    special_tea: ["Special Tea", 80],
+    masala_tea: ["Masala Tea", 100],
+    shakkar_tea: ["Shakkar Tea", 100],
+    doodh_patti: ["Doodh Patti", 120],
+    cappuccino: ["Cappuccino", 200],
+    black_coffee: ["Black Coffee", 150],
+  };
+
+  const friesItems = {
+    masala_fries: ["Masala Fries", 240],
+    mayo_fries: ["Mayo Fries", 260],
+    chilli_milli_fries: ["Chilli Milli Fries", 280],
+    zingoo_fries: ["Zingoo Fries", 300],
+    pizza_fries: ["Pizza Fries", 350],
+    salsiccia_fries: ["Salsiccia Fries", 320],
+  };
+
+  const extrasItems = {
+    extra_paratha: ["Extra Paratha", 60],
+    extra_shawarma_bread: ["Extra Shawarma Bread", 30],
+    cheese_slice: ["Cheese Slice", 50],
+    hot_sauce: ["Hot Sauce", 20],
+    dr_cafe_special_sauce: ["Dr Cafe Special Sauce", 20],
+  };
+
+  const freeDeliveryDealsItems = {
+    family_deal_1: ["Family Deal 1 (2 Zinger Shawarma, 2 Chicken Shawarma, 1 Chicken Burger, 1L Drink)", 1120],
+    family_deal_2: ["Family Deal 2 (2 Zinger Burger, 2 Chicken Burger, 1 Chicken Shawarma, 1L Drink)", 1220],
+    family_deal_3: ["Family Deal 3 (2 Pizza Burger, 2 Pizza Shawarma, 1 Pizza Paratha Roll, 1L Drink)", 1670],
+    family_deal_4: ["Family Deal 4 (3 Zinger Burger, 2 Zinger Burger, 1 Zinger Paratha Roll, 1L Drink)", 1620],
+    friends_deal_1: ["Friends Deal 1 (1 Zinger Burger, 1 Chicken Burger, 1 Pizza Burger, 500ml Drink)", 860],
+    friends_deal_2: ["Friends Deal 2 (1 Zinger Burger, 1 Chicken Burger, 1 Zinger Shawarma, 500ml Drink)", 750],
+    friends_deal_3: ["Friends Deal 3 (1 Zinger Burger, 1 Paratha Roll, 1 Zinger Shawarma, 500ml Drink)", 790],
+    friends_deal_4: ["Friends Deal 4 (2 Zinger Burger, 1 Zinger Shawarma, 500ml Drink)", 800],
+  };
+
+  const dealsItems = {
+    deal_1: ["Deal 1 (3 Zinger Shawarma, 500ml Drink)", 690],
+    deal_2: ["Deal 2 (3 Zinger Paratha Roll, 500ml Drink)", 840],
+    deal_3: ["Deal 3 (3 Fajita Paratha Roll, 500ml Drink)", 780],
+    deal_4: ["Deal 4 (2 Cheesy Tikka Sandwiches (serving of 4), 345ml Drink)", 630],
+    deal_5: ["Deal 5 (1 Zinger Burger, 1 Fries, 345ml Drink)", 370],
+    deal_6: ["Deal 6 (1 Patty Burger, 1 Fries, 345ml Drink)", 330],
+    deal_7: ["Deal 7 (1 Chicken Burger, 1 Fries, 345ml Drink)", 350],
+    deal_8: ["Deal 8 (1 Family Pizza Fries, 500ml Drink)", 640],
+    deal_9: ["Deal 9 (2 Zinger Burger, 1 Mayo Fries, 500ml Drink)", 660],
+    deal_10: ["Deal 10 (2 Mini Zinger Burgers, 500ml Drink)", 400],
+    deal_11: ["Deal 11 (1 Zinger Burger, 1 Paratha Roll, 1 Mayo Fries, 500ml Drink)", 660],
+    deal_12: ["Deal 12 (1 Zinger Burger, 1 Zinger Shawarma, 500ml Drink)", 520],
+  };
+
+  window.onload = function () {
+    generateMenu(parathaItems, "parathaMenu");
+    generateMenu(sandwichItems, "sandwichMenu");
+    generateMenu(tostadasItems, "tostadasMenu");
+    generateMenu(burgerItems, "burgersMenu");
+    generateMenu(shawarmaItems, "shawarmaMenu");
+    generateMenu(wingsItems, "wingsMenu");
+    generateMenu(parathaRollsItems, "parathaRollsMenu");
+    generateMenu(plattersItems, "plattersMenu");
+    generateMenu(teaAndCoffeeItems, "teaAndCoffeeMenu");
+    generateMenu(friesItems, "friesMenu");
+    generateMenu(extrasItems, "extrasMenu");
+    generateMenu(freeDeliveryDealsItems, "freeDeliveryDealsMenu");
+    generateMenu(dealsItems, "dealsMenu");
+  };
+
+  function generateMenu(items, menuId) {
+    const container = document.getElementById(menuId);
+    for (const id in items) {
+      const [name, price] = items[id];
+      container.innerHTML += `
+        <div class="pizza-row mb-2">
+          <label>
+            <input type="checkbox" id="${id}_check" onclick="toggleQty('${id}')" />
+            <span class="item-name">${name}</span> - <b>Rs ${price}</b>
+          </label>
+          <div class="quantity-buttons mt-1">
+            <button type="button" id="${id}_minus" onclick="updateQuantity('${id}', -1)" disabled>-</button>
+            <input type="number" id="${id}_qty" class="form-control" style="width: 70px; display: inline-block;" min="0" value="0" disabled oninput="calculateTotal()" />
+            <button type="button" id="${id}_plus" onclick="updateQuantity('${id}', 1)" disabled>+</button>
+          </div>
+        </div>`;
+    }
+  }
+
+  // Placeholder functions (add your implementations)
+  function toggleQty(id) {
+    const isChecked = document.getElementById(`${id}_check`).checked;
+    document.getElementById(`${id}_qty`).disabled = !isChecked;
+    document.getElementById(`${id}_plus`).disabled = !isChecked;
+    document.getElementById(`${id}_minus`).disabled = !isChecked;
+    if (!isChecked) document.getElementById(`${id}_qty`).value = 0;
+    calculateTotal();
+  }
+
+  function updateQuantity(id, change) {
+    const qtyInput = document.getElementById(`${id}_qty`);
+    let qty = parseInt(qtyInput.value || 0);
+    qty = Math.max(0, qty + change);
+    qtyInput.value = qty;
+    calculateTotal();
+  }
+
+  function calculateTotal() {
+    let total = 0;
+    const allItems = {
+      ...parathaItems, ...sandwichItems, ...tostadasItems, ...burgerItems, ...shawarmaItems,
+      ...wingsItems, ...parathaRollsItems, ...plattersItems, ...teaAndCoffeeItems,
+      ...friesItems, ...extrasItems, ...freeDeliveryDealsItems, ...dealsItems,
+    };
+
+    for (const id in allItems) {
+      const [name, price] = allItems[id];
+      const qty = parseInt(document.getElementById(`${id}_qty`)?.value || 0);
+      total += price * qty;
+    }
+
+    document.getElementById("totalPrice").innerText = total.toFixed(2);
+  }
+
+  function submitOrder() {
+  const name = document.getElementById("name").value.trim();
+  const contact = document.getElementById("contact").value.trim();
+  const address = document.getElementById("address").value.trim();
+  const totalPrice = document.getElementById("totalPrice").innerText;
+
+  if (!name || !contact || !address) {
+    alert("Please fill out all the details.");
+    return;
+  }
+
+  const allItems = {
+    ...parathaItems, ...sandwichItems, ...tostadasItems, ...burgerItems, ...shawarmaItems,
+    ...wingsItems, ...parathaRollsItems, ...plattersItems, ...teaAndCoffeeItems,
+    ...friesItems, ...extrasItems, ...freeDeliveryDealsItems, ...dealsItems,
+  };
+
+  let orderDetails = `*Dr.Cafe Order*\n\n`;
+  orderDetails += `*Name:* ${name}\n`;
+  orderDetails += `*Contact:* ${contact}\n`;
+  orderDetails += `*Address:* ${address}\n\n`;
+  orderDetails += `*Order Items:*\n`;
+
+  for (const id in allItems) {
+    const [itemName, price] = allItems[id];
+    const qty = parseInt(document.getElementById(`${id}_qty`)?.value || 0);
+    if (qty > 0) {
+      orderDetails += `- ${itemName} x ${qty} = Rs ${price * qty}\n`;
+    }
+  }
+
+  orderDetails += `\n*Total Price:* Rs ${totalPrice}`;
+
+  const encodedMessage = encodeURIComponent(orderDetails);
+  const whatsappNumber = "923167063519"; // Remove the + for WhatsApp URL
+  const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+  window.open(whatsappURL, "_blank");
+}
+
+async function extractBill() {
+  const name = document.getElementById("name").value.trim();
+  const contact = document.getElementById("contact").value.trim();
+  const address = document.getElementById("address").value.trim();
+  const totalPrice = document.getElementById("totalPrice").innerText;
+
+  if (!name || !contact || !address) {
+    alert("Please fill out all the details to generate a bill.");
+    return;
+  }
+
+  const allItems = {
+    ...parathaItems, ...sandwichItems, ...tostadasItems, ...burgerItems, ...shawarmaItems,
+    ...wingsItems, ...parathaRollsItems, ...plattersItems, ...teaAndCoffeeItems,
+    ...friesItems, ...extrasItems, ...freeDeliveryDealsItems, ...dealsItems,
+  };
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  let y = 20;
+
+  // Header
+  doc.setFontSize(20);
+  doc.setFont("helvetica", "bold");
+  doc.text("Dr.Cafe", 105, y, { align: "center" });
+  y += 8;
+
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "normal");
+  doc.text("Invoice", 105, y, { align: "center" });
+
+  y += 10;
+  doc.setLineWidth(0.5);
+  doc.line(20, y, 190, y); // separator line
+  y += 10;
+
+  // Customer Info
+  doc.setFontSize(12);
+  doc.text(`Date: ${new Date().toLocaleString()}`, 20, y);
+  y += 7;
+  doc.text(`Name: ${name}`, 20, y);
+  y += 7;
+  doc.text(`Contact: ${contact}`, 20, y);
+  y += 7;
+  doc.text(`Address: ${address}`, 20, y);
+  y += 10;
+
+  // Items Header
+  doc.setFont("helvetica", "bold");
+  doc.text("Item", 20, y);
+  doc.text("Qty", 140, y);
+  doc.text("Total", 170, y, { align: "right" });
+  y += 6;
+
+  doc.setLineWidth(0.2);
+  doc.line(20, y, 190, y);
+  y += 6;
+
+  // Itemized List
+  doc.setFont("helvetica", "normal");
+  let orderedSomething = false;
+
+  for (const id in allItems) {
+    const [itemName, price] = allItems[id];
+    const qty = parseInt(document.getElementById(`${id}_qty`)?.value || 0);
+    if (qty > 0) {
+      orderedSomething = true;
+
+      const itemTotal = price * qty;
+      const truncatedName = itemName.length > 40 ? itemName.slice(0, 40) + "..." : itemName;
+
+      doc.text(truncatedName, 20, y);
+      doc.text(`${qty}`, 140, y);
+      doc.text(`Rs ${itemTotal}`, 190, y, { align: "right" });
+
+      y += 7;
+
+      // Page break if needed
+      if (y > 270) {
+        doc.addPage();
+        y = 20;
+      }
+    }
+  }
+
+  if (!orderedSomething) {
+    alert("No items selected to generate a bill.");
+    return;
+  }
+
+  y += 5;
+  doc.setLineWidth(0.5);
+  doc.line(20, y, 190, y);
+  y += 10;
+
+  // Total Price
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(14);
+  doc.text("Total Amount:", 20, y);
+  doc.text(`Rs ${totalPrice}`, 190, y, { align: "right" });
+
+  y += 20;
+  doc.setFont("helvetica", "italic");
+  doc.setFontSize(12);
+  doc.text("Thank you for ordering from Dr.Cafe!", 105, y, { align: "center" });
+
+  doc.save(`DrCafe_Invoice_${name.replace(/\s+/g, '_')}.pdf`);
+}
+
+
+
+function clearOrder() {
+  // Clear the customer details
+  document.getElementById("name").value = '';
+  document.getElementById("contact").value = '';
+  document.getElementById("address").value = '';
+
+  // Reset the total price to 0
+  document.getElementById("totalPrice").innerText = "0.00";
+
+  // Reset the quantity fields and uncheck checkboxes for all items
+  const allItems = {
+    ...parathaItems, ...sandwichItems, ...tostadasItems, ...burgerItems, ...shawarmaItems,
+    ...wingsItems, ...parathaRollsItems, ...plattersItems, ...teaAndCoffeeItems,
+    ...friesItems, ...extrasItems, ...freeDeliveryDealsItems, ...dealsItems,
+  };
+
+  for (const id in allItems) {
+    // Uncheck the checkbox and reset the quantity input
+    document.getElementById(`${id}_check`).checked = false;
+    document.getElementById(`${id}_qty`).value = 0;
+
+    // Disable the quantity buttons and input
+    document.getElementById(`${id}_qty`).disabled = true;
+    document.getElementById(`${id}_plus`).disabled = true;
+    document.getElementById(`${id}_minus`).disabled = true;
+  }
+
+  // Recalculate the total (which will now be 0)
+  calculateTotal();
+}
+
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
