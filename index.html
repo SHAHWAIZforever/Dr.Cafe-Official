@@ -118,6 +118,14 @@ border-radius: 20%;
   .whatsapp-icon {
     font-size: 20px;
   }
+  .head{
+    text-align: center;
+    color: white !important;
+    background: red;
+    padding: 1%;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-shadow: 2px 2px 2px black;
+  }
 </style>
 <body>
 <center>
@@ -142,64 +150,67 @@ border-radius: 20%;
     </div>
 
     <!-- Menu Sections -->
-    <h4 class="mt-4 text-danger">Paratha Section</h4>
-    <div id="parathaMenu"></div>
-
-    <h4 class="mt-4 text-danger">Sandwich Section</h4>
-    <div id="sandwichMenu"></div>
-
-    <h4 class="mt-4 text-danger">Tostadas Section</h4>
-    <div id="tostadasMenu"></div>
-
-    <h4 class="mt-4 text-danger">Burgers Section</h4>
+    <h4 class="mt-4 text-danger head">Shawarma Section</h4>
+    <div id="shawarmaMenu"></div>
+    
+    <h4 class="mt-4 text-danger head">Burgers Section</h4>
     <div id="burgersMenu"></div>
 
-    <h4 class="mt-4 text-danger">Shawarma Section</h4>
-    <div id="shawarmaMenu"></div>
+    <h4 class="mt-4 text-danger head">Sandwich Section</h4>
+    <div id="sandwichMenu"></div>
 
-    <h4 class="mt-4 text-danger">Wings and Nuggets Section</h4>
+    <h4 class="mt-4 text-danger head">Tostadas Section</h4>
+    <div id="tostadasMenu"></div>
+
+   
+
+    <h4 class="mt-4 text-danger head">Paratha Section</h4>
+    <div id="parathaMenu"></div>
+
+    <h4 class="mt-4 text-danger head">Wings and Nuggets Section</h4>
     <div id="wingsMenu"></div>
 
-    <h4 class="mt-4 text-danger">Paratha Rolls Section</h4>
+    <h4 class="mt-4 text-danger head">Paratha Rolls Section</h4>
     <div id="parathaRollsMenu"></div>
 
-    <h4 class="mt-4 text-danger">Platters Section</h4>
+    <h4 class="mt-4 text-danger head">Platters Section</h4>
     <div id="plattersMenu"></div>
 
-    <h4 class="mt-4 text-danger">Tea and Coffee Section</h4>
+    <h4 class="mt-4 text-danger head">Tea and Coffee Section</h4>
     <div id="teaAndCoffeeMenu"></div>
 
-    <h4 class="mt-4 text-danger">Fries Section</h4>
+    <h4 class="mt-4 text-danger head">Fries Section</h4>
     <div id="friesMenu"></div>
 
-    <h4 class="mt-4 text-danger">Extras Section</h4>
+    <h4 class="mt-4 text-danger head">Extras Section</h4>
     <div id="extrasMenu"></div>
 
-    <h4 class="mt-4 text-danger">Free Delivery Deals Section</h4>
+    <h4 class="mt-4 text-danger head">Free Delivery Deals Section</h4>
     <div id="freeDeliveryDealsMenu"></div>
 
-    <h4 class="mt-4 text-danger">Deals Section</h4>
+    <h4 class="mt-4 text-danger head">Deals Section</h4>
     <div id="dealsMenu"></div>
 
     
-      <BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></BR></BR></BR></BR></BR></BR></BR></BR></BR></BR></BR>
+    <BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></BR></BR></BR></BR></BR></BR></BR></BR></BR></BR></BR>
 
     <section id="bottom">
       <h5 class="mt-3">Total Price: Rs <span id="totalPrice">0.00</span></h5>
     <button type="button" onclick="submitOrder()" class="btn btn-success mt-3 w-100">Submit Order</button>
     <button type="button" onclick="extractBill()" class="btn btn-warning mt-2 w-100">Extract Bill</button>
-    <button type="button" onclick="clearOrder()" class="btn btn-danger mt-2 w-100">Clear Order</button>
-
+    <h3 id="jazzcash-number">0300-1234567</h3>
+    
     <br>
     <a href="https://wa.me/923167063519" target="_blank" style="text-decoration: none;transform: translateY(-10px);">
       <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp Icon" style="vertical-align: middle;"/>
       <span style="font-size: 16px; color: #25D366; font-weight: bold; vertical-align: middle;">Chat on WhatsApp</span>
     </a>
   </section>
+
    
   </form>
 </div>
-
+ 
 
 
 <script>
